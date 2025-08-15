@@ -3,32 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bella Vista - Authentic Italian Cuisine | Order Online</title>
-    <meta name="description" content="Experience authentic Italian cuisine at Bella Vista. Order online for pickup or delivery. Fresh ingredients, traditional recipes, modern presentation.">
+    <title>Elite Badminton Club | Court Reservations & Memberships</title>
+    <meta name="description" content="Professional badminton club with real-time court booking, secure payments, memberships, and tournaments. Join Elite Badminton Club today!">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <h1>Bella Vista</h1>
-                <span class="tagline">Authentic Italian</span>
+                <div class="logo-icon">
+                    <i data-lucide="zap"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Elite Badminton</h1>
+                    <span class="tagline">Professional Club</span>
+                </div>
             </div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#menu">Menu</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#courts">Courts</a></li>
+                <li><a href="#membership">Membership</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#news">News</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <button class="cart-btn" id="cartBtn">
-                    <i data-lucide="shopping-cart"></i>
-                    <span class="cart-count" id="cartCount">0</span>
+                <button class="auth-btn" id="authBtn">
+                    <i data-lucide="user"></i>
+                    <span id="authText">Login</span>
                 </button>
                 <button class="menu-toggle" id="menuToggle">
                     <i data-lucide="menu"></i>
@@ -44,82 +51,157 @@
         </div>
         <div class="hero-content">
             <div class="hero-text">
-                <h1 class="hero-title">Authentic Italian Flavors</h1>
-                <p class="hero-subtitle">Experience the taste of Italy with our traditional recipes and fresh ingredients, crafted with passion since 1985.</p>
+                <h1 class="hero-title">Play Badminton Like a Pro</h1>
+                <p class="hero-subtitle">Premium courts, professional coaching, and a vibrant community. Book your court in seconds and experience badminton at its finest.</p>
                 <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="scrollToMenu()">Order Now</button>
-                    <button class="btn btn-secondary" onclick="scrollToAbout()">Our Story</button>
+                    <button class="btn btn-primary" onclick="scrollToSection('courts')">Book Court Now</button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('membership')">Join Our Club</button>
                 </div>
             </div>
             <div class="hero-features">
                 <div class="feature">
                     <i data-lucide="clock"></i>
-                    <span>30min Delivery</span>
+                    <span>Real-time Booking</span>
                 </div>
                 <div class="feature">
-                    <i data-lucide="award"></i>
-                    <span>Award Winning</span>
+                    <i data-lucide="shield-check"></i>
+                    <span>Secure Payments</span>
                 </div>
                 <div class="feature">
-                    <i data-lucide="leaf"></i>
-                    <span>Fresh Ingredients</span>
+                    <i data-lucide="trophy"></i>
+                    <span>Pro Tournaments</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Menu Section -->
-    <section id="menu" class="menu-section">
+    <!-- Courts Section -->
+    <section id="courts" class="courts-section">
         <div class="container">
             <div class="section-header">
-                <h2>Our Menu</h2>
-                <p>Discover our selection of authentic Italian dishes</p>
+                <h2>Court Reservations</h2>
+                <p>Book your preferred court with real-time availability and instant confirmation</p>
             </div>
             
-            <div class="menu-categories">
-                <button class="category-btn active" data-category="all">All</button>
-                <button class="category-btn" data-category="appetizers">Appetizers</button>
-                <button class="category-btn" data-category="pasta">Pasta</button>
-                <button class="category-btn" data-category="pizza">Pizza</button>
-                <button class="category-btn" data-category="mains">Main Courses</button>
-                <button class="category-btn" data-category="desserts">Desserts</button>
-            </div>
-
-            <div class="menu-grid" id="menuGrid">
-                <!-- Menu items will be populated by JavaScript -->
+            <div class="booking-container">
+                <div class="booking-form">
+                    <h3>Select Date & Time</h3>
+                    <div class="form-group">
+                        <label for="bookingDate">Date</label>
+                        <input type="date" id="bookingDate" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingTime">Time Slot</label>
+                        <select id="bookingTime" class="form-input">
+                            <option value="">Select time slot</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="courtType">Court Type</label>
+                        <select id="courtType" class="form-input">
+                            <option value="standard">Standard Court - $20/hour</option>
+                            <option value="premium">Premium Court - $30/hour</option>
+                            <option value="vip">VIP Court - $40/hour</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary check-availability" onclick="checkAvailability()">
+                        Check Availability
+                    </button>
+                </div>
+                
+                <div class="courts-grid" id="courtsGrid">
+                    <div class="courts-placeholder">
+                        <i data-lucide="calendar"></i>
+                        <p>Select date and time to view available courts</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
+    <!-- Membership Section -->
+    <section id="membership" class="membership-section">
         <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Our Story</h2>
-                    <p class="about-intro">Since 1985, Bella Vista has been serving authentic Italian cuisine with a passion for tradition and excellence.</p>
-                    <p>Our journey began when Marco and Sofia Rossi brought their family recipes from the hills of Tuscany to create a dining experience that captures the essence of Italy. Every dish is prepared with love, using only the finest imported ingredients and time-honored cooking techniques.</p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <span class="stat-number">38</span>
-                            <span class="stat-label">Years of Excellence</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">50k+</span>
-                            <span class="stat-label">Happy Customers</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Fresh Ingredients</span>
-                        </div>
+            <div class="section-header">
+                <h2>Membership Plans</h2>
+                <p>Choose the perfect membership plan for your badminton journey</p>
+            </div>
+            
+            <div class="membership-grid">
+                <div class="membership-card">
+                    <div class="card-header">
+                        <h3>Basic</h3>
+                        <div class="price">$29<span>/month</span></div>
                     </div>
+                    <ul class="features">
+                        <li><i data-lucide="check"></i>4 court hours per month</li>
+                        <li><i data-lucide="check"></i>15% discount on additional hours</li>
+                        <li><i data-lucide="check"></i>Access to group events</li>
+                        <li><i data-lucide="check"></i>Equipment storage</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="selectMembership('basic')">Choose Basic</button>
                 </div>
-                <div class="about-image">
-                    <div class="image-placeholder">
-                        <i data-lucide="chef-hat"></i>
-                        <p>Chef Marco & Sofia</p>
+                
+                <div class="membership-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="card-header">
+                        <h3>Premium</h3>
+                        <div class="price">$59<span>/month</span></div>
                     </div>
+                    <ul class="features">
+                        <li><i data-lucide="check"></i>10 court hours per month</li>
+                        <li><i data-lucide="check"></i>25% discount on additional hours</li>
+                        <li><i data-lucide="check"></i>Priority court booking</li>
+                        <li><i data-lucide="check"></i>Free coaching sessions (2/month)</li>
+                        <li><i data-lucide="check"></i>Tournament entry discounts</li>
+                        <li><i data-lucide="check"></i>Guest privileges</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="selectMembership('premium')">Choose Premium</button>
                 </div>
+                
+                <div class="membership-card">
+                    <div class="card-header">
+                        <h3>Elite</h3>
+                        <div class="price">$99<span>/month</span></div>
+                    </div>
+                    <ul class="features">
+                        <li><i data-lucide="check"></i>Unlimited court hours</li>
+                        <li><i data-lucide="check"></i>VIP court access</li>
+                        <li><i data-lucide="check"></i>Personal coaching included</li>
+                        <li><i data-lucide="check"></i>Free tournament entries</li>
+                        <li><i data-lucide="check"></i>Equipment discounts</li>
+                        <li><i data-lucide="check"></i>Exclusive member events</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="selectMembership('elite')">Choose Elite</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tournaments & Events</h2>
+                <p>Join exciting tournaments and special events throughout the year</p>
+            </div>
+            
+            <div class="events-grid" id="eventsGrid">
+                <!-- Events will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="news-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Club News & Announcements</h2>
+                <p>Stay updated with the latest news, tips, and club updates</p>
+            </div>
+            
+            <div class="news-grid" id="newsGrid">
+                <!-- News will be populated by JavaScript -->
             </div>
         </div>
     </section>
@@ -128,8 +210,8 @@
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="section-header">
-                <h2>Visit Us</h2>
-                <p>Come experience authentic Italian hospitality</p>
+                <h2>Visit Our Club</h2>
+                <p>Come experience professional badminton facilities and community</p>
             </div>
             <div class="contact-content">
                 <div class="contact-info">
@@ -137,54 +219,160 @@
                         <i data-lucide="map-pin"></i>
                         <div>
                             <h3>Location</h3>
-                            <p>123 Little Italy Street<br>New York, NY 10012</p>
+                            <p>123 Sports Complex Avenue<br>Downtown Sports District<br>City Center, ST 12345</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i data-lucide="phone"></i>
                         <div>
                             <h3>Phone</h3>
-                            <p>(555) 123-4567</p>
+                            <p>(555) 123-SPORT<br>(555) 123-7678</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i data-lucide="clock"></i>
                         <div>
-                            <h3>Hours</h3>
-                            <p>Mon-Thu: 11am-10pm<br>Fri-Sat: 11am-11pm<br>Sun: 12pm-9pm</p>
+                            <h3>Operating Hours</h3>
+                            <p>Mon-Fri: 6am-11pm<br>Sat-Sun: 7am-10pm<br>Holidays: 8am-9pm</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@elitebadminton.com<br>bookings@elitebadminton.com</p>
                         </div>
                     </div>
                 </div>
-                <div class="map-placeholder">
-                    <i data-lucide="map"></i>
-                    <p>Interactive Map</p>
+                <div class="facilities-showcase">
+                    <h3>Our Facilities</h3>
+                    <div class="facilities-grid">
+                        <div class="facility">
+                            <i data-lucide="home"></i>
+                            <span>8 Professional Courts</span>
+                        </div>
+                        <div class="facility">
+                            <i data-lucide="car"></i>
+                            <span>Free Parking</span>
+                        </div>
+                        <div class="facility">
+                            <i data-lucide="droplets"></i>
+                            <span>Shower Facilities</span>
+                        </div>
+                        <div class="facility">
+                            <i data-lucide="coffee"></i>
+                            <span>Café & Lounge</span>
+                        </div>
+                        <div class="facility">
+                            <i data-lucide="shopping-bag"></i>
+                            <span>Pro Shop</span>
+                        </div>
+                        <div class="facility">
+                            <i data-lucide="users"></i>
+                            <span>Coaching Staff</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Shopping Cart Sidebar -->
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3>Your Order</h3>
-            <button class="cart-close" id="cartClose">
-                <i data-lucide="x"></i>
-            </button>
-        </div>
-        <div class="cart-items" id="cartItems">
-            <div class="empty-cart">
-                <i data-lucide="shopping-cart"></i>
-                <p>Your cart is empty</p>
-                <p class="empty-cart-sub">Add some delicious items to get started!</p>
+    <!-- Authentication Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="authModalTitle">Login</h3>
+                <button class="modal-close" onclick="closeAuthModal()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="tab-btn active" onclick="switchAuthTab('login')">Login</button>
+                    <button class="tab-btn" onclick="switchAuthTab('register')">Register</button>
+                </div>
+                
+                <form id="authForm" class="auth-form">
+                    <div class="form-group" id="nameGroup" style="display: none;">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" class="form-input" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group" id="confirmPasswordGroup" style="display: none;">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" class="form-input" placeholder="Confirm your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width" id="authSubmitBtn">Login</button>
+                </form>
+                
+                <div class="auth-footer">
+                    <p id="authFooterText">Don't have an account? <a href="#" onclick="switchAuthTab('register')">Sign up</a></p>
+                </div>
             </div>
         </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total: $<span id="cartTotal">0.00</span></span>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Complete Your Booking</h3>
+                <button class="modal-close" onclick="closeBookingModal()">
+                    <i data-lucide="x"></i>
+                </button>
             </div>
-            <button class="btn btn-primary checkout-btn" id="checkoutBtn" disabled>
-                Checkout
-            </button>
+            <div class="modal-body">
+                <div class="booking-summary" id="bookingSummary">
+                    <!-- Booking details will be populated here -->
+                </div>
+                
+                <div class="payment-section">
+                    <h4>Payment Information</h4>
+                    <div class="payment-methods">
+                        <div class="payment-method active" data-method="card">
+                            <i data-lucide="credit-card"></i>
+                            <span>Credit Card</span>
+                        </div>
+                        <div class="payment-method" data-method="paypal">
+                            <i data-lucide="smartphone"></i>
+                            <span>PayPal</span>
+                        </div>
+                    </div>
+                    
+                    <form id="paymentForm" class="payment-form">
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" class="form-input" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiryDate">Expiry Date</label>
+                                <input type="text" id="expiryDate" class="form-input" placeholder="MM/YY">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" class="form-input" placeholder="123">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardName">Name on Card</label>
+                            <input type="text" id="cardName" class="form-input" placeholder="John Doe">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary full-width">
+                            <i data-lucide="lock"></i>
+                            Complete Secure Payment
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -196,32 +384,56 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Bella Vista</h3>
-                    <p>Bringing authentic Italian flavors to your table since 1985.</p>
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i data-lucide="zap"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h3>Elite Badminton</h3>
+                            <p>Professional badminton club experience since 2015</p>
+                        </div>
+                    </div>
                     <div class="social-links">
                         <a href="#"><i data-lucide="facebook"></i></a>
                         <a href="#"><i data-lucide="instagram"></i></a>
                         <a href="#"><i data-lucide="twitter"></i></a>
+                        <a href="#"><i data-lucide="youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#menu">Menu</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#">Reservations</a></li>
+                        <li><a href="#courts">Book Court</a></li>
+                        <li><a href="#membership">Membership</a></li>
+                        <li><a href="#events">Tournaments</a></li>
+                        <li><a href="#news">Club News</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>123 Little Italy Street<br>New York, NY 10012</p>
-                    <p>(555) 123-4567</p>
-                    <p>info@bellavista.com</p>
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Court Rental</a></li>
+                        <li><a href="#">Private Coaching</a></li>
+                        <li><a href="#">Group Classes</a></li>
+                        <li><a href="#">Equipment Rental</a></li>
+                        <li><a href="#">Birthday Parties</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>123 Sports Complex Avenue<br>City Center, ST 12345</p>
+                    <p>Phone: (555) 123-SPORT</p>
+                    <p>Email: info@elitebadminton.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Bella Vista Restaurant. All rights reserved.</p>
+                <p>&copy; 2024 Elite Badminton Club. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cancellation Policy</a>
+                </div>
             </div>
         </div>
     </footer>
